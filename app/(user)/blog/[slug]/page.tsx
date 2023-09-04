@@ -4,6 +4,7 @@ import { Post } from "@/typings";
 import { groq } from "next-sanity";
 import { PortableText } from "@portabletext/react";
 import { RichTextComponent } from "@/components/RichTextComponent";
+import Head from "next/head";
 
 type Props = {
     params: {
@@ -35,6 +36,12 @@ async function  Post({ params : {slug} }: Props) {
     const post : Post = await client.fetch(query, {slug})
 
   return (
+    <>
+    <Head>
+      <title>Dev SDK Blogs</title>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3966665476971711"
+     crossOrigin="anonymous"></script>
+    </Head>
     <article className="px-10 pb-28">
         <section className="space-y -2 border-collapse border-yellow-500 text-white">
              <div className="relative min-h-56 overflow-hidden flex flex-col md:flex-row justify-between">
@@ -81,6 +88,7 @@ async function  Post({ params : {slug} }: Props) {
         {/* @ts-ignore */}
         <PortableText value={post.body} components={RichTextComponent}/>
     </article>
+    </>
   )
 }
 
